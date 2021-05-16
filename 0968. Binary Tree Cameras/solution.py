@@ -1,7 +1,7 @@
 class Solution:
     def __init__(self):
         self.result = 0
-        self.covered = [None]
+        self.covered = set([None])
     def dfs(self, node: TreeNode, parent: TreeNode=None):
         if node:
             self.dfs(node.left, node)
@@ -10,7 +10,7 @@ class Solution:
             if (parent is None and node not in self.covered or
                 node.left not in self.covered or node.right not in self.covered):
                 self.result += 1
-                self.covered.extend([parent, node, node.left, node.right])
+                self.covered.update([parent, node, node.left, node.right])
             
         
     def minCameraCover(self, root: TreeNode) -> int:
