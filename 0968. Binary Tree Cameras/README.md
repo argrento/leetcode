@@ -1,4 +1,4 @@
 ## Results
 Solution | Time | Memory
 ---------|------|-------
-[solution.py](solution.py) | 104 ms, faster than 5.88%  | 14.8 MB, less than 14.03%
+[solution.py](solution.py) |  44 ms, faster than 66.74%  | 14.7 MB, less than 47.06%
