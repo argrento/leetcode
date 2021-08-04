@@ -18,30 +18,26 @@ class Solution:
             else:
                 if len(current_line) == 1 and maxWidth - self.line_length(current_line) != 0:
                     current_line.append(' ')
-                result.append(current_line)
+                    free_space -= 1
+                # add spaces
+                word_it = cycle(current_line)
+                word_in_line = next(word_it)
+                word_idx = 0
+                while free_space > 0:
+                    if ' ' in word_in_line:
+                        current_line[word_idx] += ' '
+                        free_space -= 1
+                    word_in_line = next(word_it)
+                    word_idx = (word_idx + 1) % len(current_line)
+                    
+                result.append("".join(current_line))
                 current_line = [word]
         
         # align last line
-        last_line = "".join(current_line)
-        while len(last_line) != maxWidth:
-            last_line += ' '
+        current_line = "".join(current_line)
+        while len(current_line) != maxWidth:
+            current_line += ' '
+        result.append(current_line)
                 
-        for line_idx, line in enumerate(result):
-            whitespaces = maxWidth - self.line_length(line)
-            if whitespaces == 0:
-                continue
-            word_it = cycle(line)
-            word = next(word_it)
-            word_idx = 0
-            while whitespaces > 0:
-                if ' ' in word:
-                    result[line_idx][word_idx] += ' '
-                    whitespaces -= 1
-                word = next(word_it)
-                word_idx = (word_idx + 1) % len(line)
-                
-        
-        result.append([last_line])
-                
-        return ["".join(line) for line in result]
+        return result
             
